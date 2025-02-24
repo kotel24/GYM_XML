@@ -1,0 +1,15 @@
+package ru.mygames.gym_xml.domain
+
+import androidx.lifecycle.LiveData
+
+interface Exercies_Repository{
+    fun addExercies(exercies: Exercies)
+
+    fun deleteExercies(exercies: Exercies)
+
+    fun editExercies(exercies: Exercies)
+
+    fun getExerciesById(id: Int): Exercies
+
+    fun getExercies(): LiveData<List<Exercies>>
+}
