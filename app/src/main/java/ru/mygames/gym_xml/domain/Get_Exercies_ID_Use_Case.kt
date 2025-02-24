@@ -1,7 +1,7 @@
 package ru.mygames.gym_xml.domain
 
-class Get_Exercies_ID_Use_Case {
+class Get_Exercies_ID_Use_Case(private val exerciesRepository: Exercies_Repository) {
     fun getExerciesById(exerciesById: Int): Exercies{
-        TODO()
+        return exerciesRepository.getExerciesById(exerciesById)
     }
 }
