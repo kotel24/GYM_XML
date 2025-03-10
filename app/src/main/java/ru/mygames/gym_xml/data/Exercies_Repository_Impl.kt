@@ -4,12 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.mygames.gym_xml.domain.Exercies
 import ru.mygames.gym_xml.domain.Exercies_Repository
+import kotlin.random.Random
 
 object Exercies_Repository_Impl: Exercies_Repository {
 
-    private var exerciesList = mutableListOf<Exercies>()
+    private var exerciesList = sortedSetOf<Exercies>({o1,o2 -> o1.id.compareTo(o2.id)})
 
     private var mutableListLiveData = MutableLiveData<List<Exercies>>()
+
+    init {
+        for(i in 0 until 1000){
+            val exerciesItem = Exercies("Name $i", enabled = Random.nextBoolean(), durationOrCount = i.toString())
+            addExercies(exerciesItem)
+        }
+    }
 
     private var autoIncrementId = 0
     override fun addExercies(exercies: Exercies) {
