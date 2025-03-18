@@ -11,5 +11,5 @@ interface Exercies_Repository{
 
     fun getExerciesById(id: Int): Exercies
 
-    fun getExercies(): LiveData<List<Exercies>>
+    fun getExerciesList(): LiveData<List<Exercies>>
 }

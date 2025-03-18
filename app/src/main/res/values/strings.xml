@@ -3,4 +3,9 @@
     <string name="exercies1">прес</string>
     <string name="count1">1</string>
     <string name="add_new_exercies_item">добавление нового элемента</string>
+    <string name="name">Name: </string>
+    <string name="count">Count:</string>
+    <string name="save">Save</string>
+    <string name="error_input_count">неправильный ввод колличества продуктов</string>
+    <string name="error_input_name">некорректы символы в названии продукта</string>
 </resources>

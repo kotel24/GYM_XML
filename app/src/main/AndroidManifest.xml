@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GYM_XML"
         tools:targetApi="31">
+        <activity android:name=".presentation.ExerciesItemActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">

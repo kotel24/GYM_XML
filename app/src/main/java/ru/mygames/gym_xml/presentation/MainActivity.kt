@@ -3,14 +3,16 @@ package ru.mygames.gym_xml.presentation
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.mygames.gym_xml.R
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
-
+    private var ExerciesItemContainer:FragmentContainerView? = null
     private lateinit var exerciesAdapter: ExerciesAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +22,11 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel.exercieslist.observe(this){
             exerciesAdapter.submitList(it)
+        }
+        val buttonAddItem = findViewById<FloatingActionButton>(R.id.button_add_shop_item)
+        buttonAddItem.setOnClickListener {
+            val intent = ExerciesItemActivity.newIntentAddItem(this)
+            startActivity(intent)
         }
     }
     private fun setupRecyclerView() {
@@ -64,8 +71,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupOnClickLictener() {
-        exerciesAdapter.onExerciesItemClickListener = {
-        }
+        exerciesAdapter.onExerciesItemClickListener =
+            {
+                val intent = ExerciesItemActivity.newIntentEditItem(this, it.id)
+                startActivity(intent)
+            }
     }
 
     private fun setupOnLongClickListener() {

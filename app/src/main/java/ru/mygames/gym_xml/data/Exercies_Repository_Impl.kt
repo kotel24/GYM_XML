@@ -13,7 +13,7 @@ object Exercies_Repository_Impl: Exercies_Repository {
     private var mutableListLiveData = MutableLiveData<List<Exercies>>()
 
     init {
-        for(i in 0 until 1000){
+        for(i in 0 until 10){
             val exerciesItem = Exercies("Name $i", enabled = Random.nextBoolean(), durationOrCount = i.toString())
             addExercies(exerciesItem)
         }
@@ -41,7 +41,7 @@ object Exercies_Repository_Impl: Exercies_Repository {
         return exerciesList.find { it.id == id }?: throw RuntimeException("Element with id $id not found")
     }
 
-    override fun getExercies(): LiveData<List<Exercies>> {
+    override fun getExerciesList(): LiveData<List<Exercies>> {
         return mutableListLiveData
     }
 
