@@ -130,7 +130,7 @@ class ExerciesFragment :Fragment() {
         screenMode = mode
         if (screenMode == MODE_EDIT){
             if (!args.containsKey(EXTRA_EXERCIES_ITEM_ID))
-                throw RuntimeException("Param shop item id is absent")
+                throw RuntimeException("Param exercises item id is absent")
             exerciesItemId = args.getInt(EXTRA_EXERCIES_ITEM_ID, Exercies.UNDEFINED_ID)
         }
     }
