@@ -1,4 +1,4 @@
-package ru.mygames.gym_xml.presentation
+package ru.mygames.gym_xml.presentation.fragments
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputLayout
 import ru.mygames.gym_xml.R
 import ru.mygames.gym_xml.domain.Exercies
+import ru.mygames.gym_xml.presentation.ExerciesViewModel
 
 class ExerciesFragment :Fragment() {
     private lateinit var viewModel: ExerciesViewModel
@@ -61,7 +63,10 @@ class ExerciesFragment :Fragment() {
             tilName.error = message
         }
         viewModel.shouldCloseScreen.observe(viewLifecycleOwner) {
-            requireActivity().onBackPressed()
+            val homeFragment = HomeFragment()
+            val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
+            transaction.replace(R.id.fragment, homeFragment)
+            transaction.commit()
         }
     }
 
@@ -130,7 +135,7 @@ class ExerciesFragment :Fragment() {
         screenMode = mode
         if (screenMode == MODE_EDIT){
             if (!args.containsKey(EXTRA_EXERCIES_ITEM_ID))
-                throw RuntimeException("Param exercises item id is absent")
+                throw RuntimeException("Param exercies item id is absent")
             exerciesItemId = args.getInt(EXTRA_EXERCIES_ITEM_ID, Exercies.UNDEFINED_ID)
         }
     }
@@ -151,7 +156,7 @@ class ExerciesFragment :Fragment() {
         private const val MODE_EDIT = "mode_edit"
         private const val MODE_ADD = "mode_add"
 
-        fun newInstanceAddItem():ExerciesFragment{
+        fun newInstanceAddItem(): ExerciesFragment {
             return ExerciesFragment().apply {
                 arguments = Bundle().apply {
                     putString(EXTRA_SCREEN_MODE, MODE_ADD)
@@ -159,7 +164,7 @@ class ExerciesFragment :Fragment() {
             }
         }
 
-        fun newInstanceEditItem(shopItemId: Int):ExerciesFragment{
+        fun newInstanceEditItem(shopItemId: Int): ExerciesFragment {
             return ExerciesFragment().apply {
                 arguments = Bundle().apply {
                     putString(EXTRA_SCREEN_MODE, MODE_EDIT)
