@@ -8,4 +8,5 @@
     <string name="save">Save</string>
     <string name="error_input_count">неправильный ввод </string>
     <string name="error_input_name">некорректы ввод</string>
+    <string name="LoginTxt">Are you have an account? <font color="#FD511E">Sign in</font></string>
 </resources>

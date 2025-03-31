@@ -7,11 +7,10 @@ import androidx.fragment.app.Fragment
 import ru.mygames.gym_xml.R
 import ru.mygames.gym_xml.databinding.ActivityMainBinding
 import ru.mygames.gym_xml.presentation.fragments.AccountFragment
-import ru.mygames.gym_xml.presentation.fragments.CaloriesFragment
-import ru.mygames.gym_xml.presentation.fragments.ExerciesFragment
+import ru.mygames.gym_xml.presentation.fragments.ChatFragment
 import ru.mygames.gym_xml.presentation.fragments.HomeFragment
 import ru.mygames.gym_xml.presentation.fragments.ProgramsFragment
-import ru.mygames.gym_xml.presentation.fragments.TimerFragment
+import ru.mygames.gym_xml.presentation.fragments.SecondFragment
 
 class MainActivity : AppCompatActivity() {
     private val dataModel:MainViewModel by viewModels()
@@ -24,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         val accountFragment = AccountFragment()
         val homeFragment = HomeFragment()
         val programsFragment = ProgramsFragment()
-        val timerFragment = TimerFragment()
-        val caloriesFragment = CaloriesFragment()
+        val secondFragment = SecondFragment()
+        val chatFragment = ChatFragment()
 
         setCurrentFragment(accountFragment)
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
@@ -33,8 +32,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.programs -> setCurrentFragment(programsFragment)
                 R.id.home -> setCurrentFragment(homeFragment)
                 R.id.profile -> setCurrentFragment(accountFragment)
-                R.id.timer -> setCurrentFragment(timerFragment)
-                R.id.calories -> setCurrentFragment(caloriesFragment)
+                R.id.timer -> setCurrentFragment(secondFragment)
+                R.id.chat -> setCurrentFragment(chatFragment)
 
             }
             true

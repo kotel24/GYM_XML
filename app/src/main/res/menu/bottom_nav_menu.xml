@@ -17,10 +17,10 @@
     <item
         android:id="@+id/timer"
         android:titleCondensed="Timer"
-        android:icon="@drawable/timer"/>
+        android:icon="@drawable/second"/>
 
     <item
-        android:id="@+id/calories"
-        android:titleCondensed="Calories"
-        android:icon="@drawable/dining"/>
+        android:id="@+id/chat"
+        android:titleCondensed="Chat"
+        android:icon="@drawable/chat"/>
 </menu>
