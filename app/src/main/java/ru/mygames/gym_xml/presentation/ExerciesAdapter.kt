@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import ru.mygames.gym_xml.R
-import ru.mygames.gym_xml.domain.Exercies
+import ru.mygames.gym_xml.domain.home_exercies.Exercies
 
 class ExerciesAdapter: ListAdapter<Exercies, ExerciesViewHolder>(ExerciesDiffCallBack()) {
 

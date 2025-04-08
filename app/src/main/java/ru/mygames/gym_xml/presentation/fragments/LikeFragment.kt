@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment
 import ru.mygames.gym_xml.R
 
 
-class ChatFragment : Fragment() {
+class LikeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_chat, container, false)
+        return inflater.inflate(R.layout.fragment_like, container, false)
     }
 }

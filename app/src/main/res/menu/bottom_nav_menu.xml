@@ -20,7 +20,7 @@
         android:icon="@drawable/second"/>
 
     <item
-        android:id="@+id/chat"
+        android:id="@+id/like"
         android:titleCondensed="Chat"
-        android:icon="@drawable/chat"/>
+        android:icon="@drawable/baseline_favorite_24"/>
 </menu>

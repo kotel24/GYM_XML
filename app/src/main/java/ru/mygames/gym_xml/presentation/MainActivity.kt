@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import ru.mygames.gym_xml.R
 import ru.mygames.gym_xml.databinding.ActivityMainBinding
 import ru.mygames.gym_xml.presentation.fragments.AccountFragment
-import ru.mygames.gym_xml.presentation.fragments.ChatFragment
+import ru.mygames.gym_xml.presentation.fragments.LikeFragment
 import ru.mygames.gym_xml.presentation.fragments.HomeFragment
 import ru.mygames.gym_xml.presentation.fragments.ProgramsFragment
 import ru.mygames.gym_xml.presentation.fragments.SecondFragment
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val programsFragment = ProgramsFragment()
         val secondFragment = SecondFragment()
-        val chatFragment = ChatFragment()
+        val likeFragment = LikeFragment()
 
         setCurrentFragment(accountFragment)
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> setCurrentFragment(homeFragment)
                 R.id.profile -> setCurrentFragment(accountFragment)
                 R.id.timer -> setCurrentFragment(secondFragment)
-                R.id.chat -> setCurrentFragment(chatFragment)
+                R.id.like -> setCurrentFragment(likeFragment)
 
             }
             true

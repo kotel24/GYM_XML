@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputLayout
 import ru.mygames.gym_xml.R
-import ru.mygames.gym_xml.domain.Exercies
+import ru.mygames.gym_xml.domain.home_exercies.Exercies
 import ru.mygames.gym_xml.presentation.ExerciesViewModel
 
 class ExerciesFragment :Fragment() {

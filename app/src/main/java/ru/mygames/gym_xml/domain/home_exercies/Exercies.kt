@@ -1,4 +1,4 @@
-package ru.mygames.gym_xml.domain
+package ru.mygames.gym_xml.domain.home_exercies
 
 data class Exercies(
     val name: String,

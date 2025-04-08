@@ -1,12 +1,11 @@
 package ru.mygames.gym_xml.presentation
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.mygames.gym_xml.data.Exercies_Repository_Impl
-import ru.mygames.gym_xml.domain.Delete_Exercies_Use_Case
-import ru.mygames.gym_xml.domain.Edit_Exercies_Use_Case
-import ru.mygames.gym_xml.domain.Exercies
-import ru.mygames.gym_xml.domain.Get_Exercies_Use_Case
+import ru.mygames.gym_xml.domain.home_exercies.Delete_Exercies_Use_Case
+import ru.mygames.gym_xml.domain.home_exercies.Edit_Exercies_Use_Case
+import ru.mygames.gym_xml.domain.home_exercies.Exercies
+import ru.mygames.gym_xml.domain.home_exercies.Get_Exercies_Use_Case
 
 open class MainViewModel:ViewModel() {
     private val repository = Exercies_Repository_Impl

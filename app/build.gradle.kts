@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -9,6 +10,7 @@ android {
     buildFeatures{
         viewBinding = true
     }
+
     defaultConfig {
         applicationId = "ru.mygames.gym_xml"
         minSdk = 24
@@ -38,9 +40,25 @@ android {
 }
 
 dependencies {
+    // Retrofit для сетевых запросов
+    implementation (libs.retrofit2.retrofit)
+    implementation (libs.converter.gson)
+
+    // Glide для загрузки изображений
+    annotationProcessor (libs.compiler)
+
+    // Glide для изображений
+    implementation (libs.glide.v4160)
+
+    // Lifecycle
+    implementation (libs.androidx.lifecycle.viewmodel.ktx.v262)
+    implementation (libs.androidx.lifecycle.runtime.ktx)
+    // Для воспроизведения видео
+    implementation (libs.core)
+    implementation(libs.volley)
     implementation(libs.androidx.core.ktx)
-    implementation ("androidx.fragment:fragment-ktx:1.3.6")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+    implementation (libs.androidx.fragment.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
@@ -48,5 +66,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation(libs.glide)
 }

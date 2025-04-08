@@ -2,13 +2,13 @@ package ru.mygames.gym_xml.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import ru.mygames.gym_xml.domain.Exercies
-import ru.mygames.gym_xml.domain.Exercies_Repository
+import ru.mygames.gym_xml.domain.home_exercies.Exercies
+import ru.mygames.gym_xml.domain.home_exercies.Exercies_Repository
 import kotlin.random.Random
 
 object Exercies_Repository_Impl: Exercies_Repository {
 
-    private var exerciesList = sortedSetOf<Exercies>({o1,o2 -> o1.id.compareTo(o2.id)})
+    private var exerciesList = sortedSetOf<Exercies>({ o1, o2 -> o1.id.compareTo(o2.id)})
 
     private var mutableListLiveData = MutableLiveData<List<Exercies>>()
 
