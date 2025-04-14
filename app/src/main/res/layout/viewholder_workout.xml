@@ -44,10 +44,10 @@
         app:layout_constraintTop_toBottomOf="@+id/titleTxt">
 
         <TextView
-            android:id="@+id/durationTxt"
+            android:id="@+id/equipment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="20 min"
+            android:text="ball"
             android:textSize="12sp"
             android:textColor="@color/white"/>
 
@@ -59,10 +59,10 @@
             android:textColor="@color/orange"/>
 
         <TextView
-            android:id="@+id/excerciseTxt"
+            android:id="@+id/musclesTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Excercise"
+            android:text="Muscles"
             android:textSize="12sp"
             android:textColor="@color/white"/>
 
@@ -74,11 +74,11 @@
             android:text=" * "/>
 
         <TextView
-            android:id="@+id/kcalTxt"
+            android:id="@+id/muscles_secondaryTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textColor="@color/white"
-            android:text="160 Kcal" />
+            android:text="Muscles Secondary" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

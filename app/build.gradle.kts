@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("kotlin-parcelize")
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -40,9 +41,17 @@ android {
 }
 
 dependencies {
+    implementation (libs.picasso)
+
     // Retrofit для сетевых запросов
     implementation (libs.retrofit2.retrofit)
     implementation (libs.converter.gson)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database.ktx)
+
 
     // Glide для загрузки изображений
     annotationProcessor (libs.compiler)

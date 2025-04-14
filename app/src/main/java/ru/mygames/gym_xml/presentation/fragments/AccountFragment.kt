@@ -18,6 +18,7 @@ class AccountFragment : Fragment() {
     private lateinit var adapter: WorkoutAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        adapter = WorkoutAdapter {  }
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
 
@@ -25,9 +26,6 @@ class AccountFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this)[WorkoutViewModel::class.java]
-        adapter = WorkoutAdapter { workout ->
-            // Обработка клика
-        }
 
         setupRecyclerView(view)
         setupObservers()

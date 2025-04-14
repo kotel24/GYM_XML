@@ -6,6 +6,7 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.mygames.gym_xml.domain.Workout
 
 class WgerRepository {
     class ExerciseRepository {
@@ -15,39 +16,33 @@ class WgerRepository {
             .build()
             .create(WgerApiService::class.java)
 
-        suspend fun getExerciseInfo(): ExerciseResponse {
-            return api.getExercises()
-        }
 
-        suspend fun getEquipmentById(equipmentId: Int): Equipment {
-            return api.getEquipmentById(equipmentId)
-        }
-
-        suspend fun getExercisesWithEquipment(): List<ExerciseApi> = coroutineScope {
-            val exerciseResponse = getExerciseInfo() // Получаем данные об упражнениях
-
-            exerciseResponse.results.map { exercise ->
-                // Для каждого упражнения запускаем параллельно запросы для каждого id оборудования
-                val equipmentDeferred = exercise.equipment.map { equipmentId ->
-                    async { getEquipmentById(equipmentId).name }
-                }
-                // Ожидаем завершения всех запросов и собираем результат
-                val equipmentList = equipmentDeferred.awaitAll()
-
-                Log.i("RESPONSE2", equipmentList.toString())
-
-                ExerciseApi(
-                    id = exercise.id,
-                    uuid = exercise.uuid,
-                    category = exercise.category,
-                    created = exercise.created,
-                    last_update = exercise.last_update,
-                    muscles = exercise.muscles,
-                    muscles_secondary = exercise.muscles_secondary,
-                    equipment = exercise.equipment,
-                    variations = exercise.variations
-                )
+        suspend fun getExercisesWithEquipment(): List<Workout> = coroutineScope {
+            val exerciseResponse = api.getExercises()
+            exerciseResponse.results.map { exercise -> exercise.toWorkout()
+//                val imageDeferred = exercise.images.map { image -> image.image }
+//                val videoDeferred = exercise.videos
+//                Log.i("RESPONSE2", imageDeferred.toString())
+//                Log.i("RESPONSE3", videoDeferred.toString())
+//                ExerciseApi(
+//                id = exercise.id,
+//                uuid = exercise.uuid,
+//                muscles = exercise.muscles,
+//                muscles_secondary = exercise.muscles_secondary,
+//                equipment = exercise.equipment,
+//                images = exercise.images,
+//                videos = exercise.videos
+//                )
             }
         }
+        private fun ExerciseApi.toWorkout() = Workout(
+            id = id,
+            category = category.name,
+            equipment = equipment.map { it.nameEquipment}.toString(),
+            muscles = muscles.map { it.nameMuscles },
+            muscles_secondary = muscles_secondary.map { it.nameMuscles },
+            images = images.map { it.image },
+            videos = videos.map { it.video }
+        )
     }
 }

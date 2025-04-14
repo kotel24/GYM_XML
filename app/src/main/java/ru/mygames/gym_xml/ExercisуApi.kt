@@ -4,26 +4,29 @@ package ru.mygames.gym_xml
 data class ExerciseApi(
     val id: Int,
     val uuid: String,
-    val created: String,
-    val last_update: String,
-    val category: Int,
-    val muscles: Array<Int>,
-    val muscles_secondary: Array<Int>,
-    val equipment: Array<Int>,
-    val variations: Int
+    val category: Category,
+    val muscles: Array<ExercisуMuscles>,
+    val muscles_secondary: Array<ExercisуMuscles>,
+    val equipment: Array<Equipment>,
+    val images: Array <ExerciseImage>,
+    val videos: Array<ExerciseVideo>
 )
-
 data class Category(
-    val id: Int,
     val name: String
+)
+data class ExerciseImage(
+    val image: String,
+    val author_history:Array<String>
 )
 data class Equipment(
-    val id: Int,
-    val name: String
+    val nameEquipment: String
 )
-data class Video(
-    val exercise: Int,
+data class ExerciseVideo(
     val video: String
+)
+data class ExercisуMuscles(
+    val nameMuscles: String,
+    val imageMuscles: String
 )
 
 data class ExerciseResponse(val results: List<ExerciseApi>)

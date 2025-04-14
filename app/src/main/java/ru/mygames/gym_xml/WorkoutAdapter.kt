@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
+import com.squareup.picasso.Picasso
 import ru.mygames.gym_xml.domain.Workout
 
 class WorkoutAdapter(
@@ -18,9 +18,9 @@ class WorkoutAdapter(
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image: ShapeableImageView = view.findViewById(R.id.pic)
         val title: TextView = view.findViewById(R.id.titleTxt)
-        val duration: TextView = view.findViewById(R.id.durationTxt)
-        val exerciseType: TextView = view.findViewById(R.id.excerciseTxt)
-        val kcal: TextView = view.findViewById(R.id.kcalTxt)
+        val muscles: TextView = view.findViewById(R.id.musclesTxt)
+        val muscles_secondary: TextView = view.findViewById(R.id.muscles_secondaryTxt)
+        val equipment: TextView = view.findViewById(R.id.equipment)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,16 +34,15 @@ class WorkoutAdapter(
 
         // Загрузка изображения
         if (item.images.isNotEmpty()) {
-            Glide.with(holder.itemView)
-                .load(item.images.first().image)
+            Picasso.get()
+                .load(item.images.first())
                 .placeholder(R.drawable.add)
                 .into(holder.image)
         }
-
-        holder.title.text = item.name
-        holder.duration.text = item.duration
-        holder.exerciseType.text = item.category
-        holder.kcal.text = item.calories
+        if (item.category.isNotEmpty()) holder.title.text = item.category
+        if (item.equipment!=null) holder.equipment.text = item.equipment.toString()
+        if (item.muscles.isNotEmpty())holder.muscles.text = item.muscles.toString()
+        if (item.muscles_secondary.isNotEmpty())holder.muscles_secondary.text = item.muscles_secondary.first()
 
         holder.itemView.setOnClickListener { onItemClick(item) }
     }
