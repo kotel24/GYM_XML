@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import ru.mygames.gym_xml.domain.Workout
 
 class WorkoutViewModel : ViewModel() {
-    private val repository = WgerRepository.ExerciseRepository()
+    val repository = WgerRepository.ExerciseRepository()
     val workouts = MutableLiveData<List<Workout>>()
     val isLoading = MutableLiveData(false)
     val error = MutableLiveData<String?>()

@@ -5,11 +5,11 @@ data class ExerciseApi(
     val id: Int,
     val uuid: String,
     val category: Category,
-    val muscles: Array<ExercisуMuscles>,
-    val muscles_secondary: Array<ExercisуMuscles>,
-    val equipment: Array<Equipment>,
-    val images: Array <ExerciseImage>,
-    val videos: Array<ExerciseVideo>
+    val muscles: Array<ExercisуMuscles>?,
+    val muscles_secondary: Array<ExercisуMuscles>?,
+    val equipment: Array<Equipment>?,
+    val images: Array <ExerciseImage>?,
+    val videos: Array<ExerciseVideo>?
 )
 data class Category(
     val name: String

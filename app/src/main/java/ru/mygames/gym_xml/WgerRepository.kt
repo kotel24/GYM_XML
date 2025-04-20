@@ -1,8 +1,5 @@
 package ru.mygames.gym_xml
 
-import android.util.Log
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,10 +13,15 @@ class WgerRepository {
             .build()
             .create(WgerApiService::class.java)
 
+        suspend fun searchExercise(term: String): ExerciseResponse {
+            return api.searchExercise(term)
+        }
+
 
         suspend fun getExercisesWithEquipment(): List<Workout> = coroutineScope {
             val exerciseResponse = api.getExercises()
-            exerciseResponse.results.map { exercise -> exercise.toWorkout()
+            exerciseResponse.results.map { exercise ->
+                exercise.toWorkout()
 //                val imageDeferred = exercise.images.map { image -> image.image }
 //                val videoDeferred = exercise.videos
 //                Log.i("RESPONSE2", imageDeferred.toString())
@@ -35,14 +37,15 @@ class WgerRepository {
 //                )
             }
         }
+
         private fun ExerciseApi.toWorkout() = Workout(
             id = id,
             category = category.name,
-            equipment = equipment.map { it.nameEquipment}.toString(),
-            muscles = muscles.map { it.nameMuscles },
-            muscles_secondary = muscles_secondary.map { it.nameMuscles },
-            images = images.map { it.image },
-            videos = videos.map { it.video }
+            equipment = equipment?.map { it.nameEquipment }.toString(),
+            muscles = muscles?.map { it.nameMuscles },
+            muscles_secondary = muscles_secondary?.map { it.nameMuscles },
+            images = images?.map { it.image },
+            videos = videos?.map { it.video }
         )
     }
 }

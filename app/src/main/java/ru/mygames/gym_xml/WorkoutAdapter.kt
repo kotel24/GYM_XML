@@ -31,19 +31,19 @@ class WorkoutAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-
         // Загрузка изображения
-        if (item.images.isNotEmpty()) {
+        if (!item.images.isNullOrEmpty()) {
             Picasso.get()
                 .load(item.images.first())
                 .placeholder(R.drawable.add)
                 .into(holder.image)
+            holder.title.text = item.category
+            if (item.equipment?.isNotEmpty() == true) holder.equipment.text =
+                item.equipment.toString()
+            if (item.muscles?.isNotEmpty() == true) holder.muscles.text = item.muscles.first()
+            if (item.muscles_secondary?.isNotEmpty() == true) holder.muscles_secondary.text =
+                item.muscles_secondary.first()
         }
-        if (item.category.isNotEmpty()) holder.title.text = item.category
-        if (item.equipment!=null) holder.equipment.text = item.equipment.toString()
-        if (item.muscles.isNotEmpty())holder.muscles.text = item.muscles.toString()
-        if (item.muscles_secondary.isNotEmpty())holder.muscles_secondary.text = item.muscles_secondary.first()
-
         holder.itemView.setOnClickListener { onItemClick(item) }
     }
 

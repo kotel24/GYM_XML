@@ -1,14 +1,19 @@
 package ru.mygames.gym_xml.presentation.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import ru.mygames.gym_xml.R
 import ru.mygames.gym_xml.WorkoutAdapter
 import ru.mygames.gym_xml.WorkoutViewModel
@@ -17,8 +22,12 @@ class AccountFragment : Fragment() {
     private lateinit var viewModel: WorkoutViewModel
     private lateinit var adapter: WorkoutAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        adapter = WorkoutAdapter {  }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        adapter = WorkoutAdapter { }
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
 
@@ -27,6 +36,12 @@ class AccountFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[WorkoutViewModel::class.java]
 
+        view.findViewById<ImageView>(R.id.tv_count).setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                Log.i("SEARCH", viewModel.repository.searchExercise("g").toString())
+            }
+        }
+
         setupRecyclerView(view)
         setupObservers()
         viewModel.loadWorkouts()
@@ -34,7 +49,8 @@ class AccountFragment : Fragment() {
 
     private fun setupRecyclerView(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.workoutReView)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = adapter
     }
 
