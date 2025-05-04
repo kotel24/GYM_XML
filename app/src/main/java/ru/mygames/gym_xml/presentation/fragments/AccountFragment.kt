@@ -40,21 +40,6 @@ class AccountFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[WorkoutViewModel::class.java]
 
-
-        CoroutineScope(Dispatchers.IO).launch {
-            val client = OkHttpClient()
-            val request = Request.Builder()
-                .url("https://exercisedb.p.rapidapi.com/exercises")
-                .addHeader(
-                    "x-rapidapi-key",
-                    "61d94d24e8msh9bb77c596e8979cp109ba8jsn78f109e685c7"
-                )
-                .build()
-            val response = client.newCall(request).execute()
-
-            Log.i("EEE", response.message())
-        }
-
         setupRecyclerView(view)
         setupObservers()
         viewModel.loadWorkouts()
@@ -71,17 +56,5 @@ class AccountFragment : Fragment() {
         viewModel.workouts.observe(viewLifecycleOwner) { workouts ->
             adapter.submitList(workouts)
         }
-
-        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            // Показать/скрыть ProgressBar
-        }
-
-        viewModel.error.observe(viewLifecycleOwner) { error ->
-            error?.let { showError(it) }
-        }
-    }
-
-    private fun showError(message: String) {
-        Toast.makeText(requireContext(), "Error: $message", Toast.LENGTH_LONG).show()
     }
 }
