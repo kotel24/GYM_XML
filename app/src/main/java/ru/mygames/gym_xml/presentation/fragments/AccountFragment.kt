@@ -1,11 +1,13 @@
 package ru.mygames.gym_xml.presentation.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import ru.mygames.gym_xml.R
 import ru.mygames.gym_xml.WorkoutAdapter
 import ru.mygames.gym_xml.WorkoutViewModel
@@ -27,7 +31,7 @@ class AccountFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        adapter = WorkoutAdapter { }
+        adapter = WorkoutAdapter(requireContext()) { }
         return inflater.inflate(R.layout.fragment_account, container, false)
     }
 
@@ -36,10 +40,19 @@ class AccountFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[WorkoutViewModel::class.java]
 
-        view.findViewById<ImageView>(R.id.tv_count).setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                Log.i("SEARCH", viewModel.repository.searchExercise("g").toString())
-            }
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val client = OkHttpClient()
+            val request = Request.Builder()
+                .url("https://exercisedb.p.rapidapi.com/exercises")
+                .addHeader(
+                    "x-rapidapi-key",
+                    "61d94d24e8msh9bb77c596e8979cp109ba8jsn78f109e685c7"
+                )
+                .build()
+            val response = client.newCall(request).execute()
+
+            Log.i("EEE", response.message())
         }
 
         setupRecyclerView(view)

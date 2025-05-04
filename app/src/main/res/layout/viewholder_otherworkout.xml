@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="220dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/blue_bg"
     android:layout_margin="8dp">
@@ -10,8 +10,8 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/pic"
         style="@style/Style.App.circleImageView"
-        android:layout_width="205dp"
-        android:layout_height="150dp"
+        android:layout_width="305dp"
+        android:layout_height="225dp"
         app:layout_constraintEnd_toEndOf="parent"
         android:scaleType="centerCrop"
         android:layout_margin="8dp"
@@ -27,7 +27,7 @@
         android:textStyle="bold"
         android:text="title"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="24sp"
 
         app:layout_constraintStart_toStartOf="@+id/pic"
         app:layout_constraintTop_toBottomOf="@+id/pic" />
@@ -39,7 +39,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/infoTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTxt">
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ball"
-            android:textSize="12sp"
+            android:textSize="20sp"
             android:textColor="@color/white"/>
 
         <TextView
@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Muscles"
-            android:textSize="12sp"
+            android:textSize="20sp"
             android:textColor="@color/white"/>
 
         <TextView
@@ -78,8 +78,20 @@
             android:id="@+id/muscles_secondaryTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="20sp"
             android:textColor="@color/white"
             android:text="Muscles Secondary" />
     </LinearLayout>
+    <TextView
+        android:id="@+id/infoTxt"
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="info"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+
+        app:layout_constraintStart_toStartOf="@+id/ll"
+        app:layout_constraintTop_toBottomOf="@+id/ll" />
 </androidx.constraintlayout.widget.ConstraintLayout>

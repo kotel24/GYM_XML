@@ -2,16 +2,16 @@ package ru.mygames.gym_xml
 
 import retrofit2.http.GET
 import retrofit2.http.Headers
-import retrofit2.http.Query
 
 interface WgerApiService {
-    @GET("exerciseinfo")
-    @Headers("Authorization: 70e53ff474e9a480bb3c61047ab2c83c9781b415")
+    @GET("exercises")
+    @Headers("x-rapidapi-key: 61d94d24e8msh9bb77c596e8979cp109ba8jsn78f109e685c7")
     suspend fun getExercises(
-    ): ExerciseResponse
+    ): List<ExerciseApi>
 
-    @GET("exercise/search")
-    @Headers("Authorization: 70e53ff474e9a480bb3c61047ab2c83c9781b415")
-    suspend fun searchExercise(@Query("term") term: String): ExerciseResponse
+    @GET("exercises/name/")
+    @Headers("x-rapidapi-key: 61d94d24e8msh9bb77c596e8979cp109ba8jsn78f109e685c7")
+    suspend fun getName(
+    ): List<ExerciseApi>
 }
 

@@ -3,49 +3,32 @@ package ru.mygames.gym_xml
 import kotlinx.coroutines.coroutineScope
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.mygames.gym_xml.domain.Workout
 
 class WgerRepository {
     class ExerciseRepository {
         private val api = Retrofit.Builder()
-            .baseUrl("https://wger.de/api/v2/")
+            .baseUrl("https://exercisedb.p.rapidapi.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(WgerApiService::class.java)
 
-        suspend fun searchExercise(term: String): ExerciseResponse {
-            return api.searchExercise(term)
-        }
-
 
         suspend fun getExercisesWithEquipment(): List<Workout> = coroutineScope {
             val exerciseResponse = api.getExercises()
-            exerciseResponse.results.map { exercise ->
+            exerciseResponse.map { exercise ->
                 exercise.toWorkout()
-//                val imageDeferred = exercise.images.map { image -> image.image }
-//                val videoDeferred = exercise.videos
-//                Log.i("RESPONSE2", imageDeferred.toString())
-//                Log.i("RESPONSE3", videoDeferred.toString())
-//                ExerciseApi(
-//                id = exercise.id,
-//                uuid = exercise.uuid,
-//                muscles = exercise.muscles,
-//                muscles_secondary = exercise.muscles_secondary,
-//                equipment = exercise.equipment,
-//                images = exercise.images,
-//                videos = exercise.videos
-//                )
             }
         }
 
         private fun ExerciseApi.toWorkout() = Workout(
+            bodyPart =  bodyPart,
+            equipment =  equipment,
+            gifUrl = gifUrl,
             id = id,
-            category = category.name,
-            equipment = equipment?.map { it.nameEquipment }.toString(),
-            muscles = muscles?.map { it.nameMuscles },
-            muscles_secondary = muscles_secondary?.map { it.nameMuscles },
-            images = images?.map { it.image },
-            videos = videos?.map { it.video }
+            name =  name,
+            target = target,
+            secondaryMuscles = secondaryMuscles,
+            instructions = instructions
         )
     }
 }

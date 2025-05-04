@@ -1,7 +1,11 @@
 package ru.mygames.gym_xml
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-data class ExerciseApi(
+
+@Parcelize
+data class Workout(
     val bodyPart: String,
     val equipment: String,
     val gifUrl: String,
@@ -10,4 +14,4 @@ data class ExerciseApi(
     val target: String,
     val secondaryMuscles: Array<String>,
     val instructions: Array<String>
-)
+) : Parcelable

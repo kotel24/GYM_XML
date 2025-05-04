@@ -10,7 +10,7 @@ import ru.mygames.gym_xml.presentation.fragments.AccountFragment
 import ru.mygames.gym_xml.presentation.fragments.LikeFragment
 import ru.mygames.gym_xml.presentation.fragments.HomeFragment
 import ru.mygames.gym_xml.presentation.fragments.ProgramsFragment
-import ru.mygames.gym_xml.presentation.fragments.SecondFragment
+import ru.mygames.gym_xml.presentation.fragments.TimerFragment
 
 class MainActivity : AppCompatActivity() {
     private val dataModel:MainViewModel by viewModels()
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val accountFragment = AccountFragment()
         val homeFragment = HomeFragment()
         val programsFragment = ProgramsFragment()
-        val secondFragment = SecondFragment()
+        val timerFragment = TimerFragment()
         val likeFragment = LikeFragment()
 
         setCurrentFragment(accountFragment)
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.programs -> setCurrentFragment(programsFragment)
                 R.id.home -> setCurrentFragment(homeFragment)
                 R.id.profile -> setCurrentFragment(accountFragment)
-                R.id.timer -> setCurrentFragment(secondFragment)
+                R.id.timer -> setCurrentFragment(timerFragment)
                 R.id.like -> setCurrentFragment(likeFragment)
 
             }
