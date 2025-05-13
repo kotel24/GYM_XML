@@ -4,17 +4,18 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
 
 class WorkoutAdapter(
     private val context: Context,
-    private val onItemClick: (Workout) -> Unit,
-) : RecyclerView.Adapter<WorkoutAdapter.ViewHolder>() {
-
-    private var items = emptyList<Workout>()
+    private val onLikeClick: (Workout, Boolean) -> Unit,
+    private var favoriteIds: Set<Int> = emptySet() // просто список ID в избранном
+) : ListAdapter<Workout, WorkoutAdapter.ViewHolder>(DiffutilCallBack()) {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image: ShapeableImageView = view.findViewById(R.id.pic)
@@ -22,6 +23,7 @@ class WorkoutAdapter(
         val muscles: TextView = view.findViewById(R.id.musclesTxt)
         val bodyPart: TextView = view.findViewById(R.id.muscles_secondaryTxt)
         val equipment: TextView = view.findViewById(R.id.equipment)
+        val likeIcon: ImageView = view.findViewById(R.id.heartIcon)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,24 +33,33 @@ class WorkoutAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = items[position]
-        // Загрузка изображения
-        Glide.with(context)
-            .load(item.gifUrl)
-            .placeholder(R.drawable.add)
-            .into(holder.image)
-        holder.title.text = item.name
-        holder.equipment.text = item.equipment
-        holder.muscles.text = item.secondaryMuscles.first()
-        holder.bodyPart.text = item.bodyPart
-        holder.itemView.setOnClickListener { onItemClick(item) }
+        val item = getItem(position)
 
+        with(holder) {
+            title.text = item.name
+            equipment.text = item.equipment
+            muscles.text = item.secondaryMuscles
+            bodyPart.text = item.bodyPart
+
+            Glide.with(context)
+                .load(item.gifUrl)
+                .placeholder(R.drawable.add)
+                .into(image)
+
+            val isFavorite = favoriteIds.contains(item.id)
+            likeIcon.setImageResource(
+                if (isFavorite) R.drawable.baseline_favorite_24
+                else R.drawable.baseline_favorite_border_24
+            )
+
+            likeIcon.setOnClickListener {
+                onLikeClick(item, isFavorite)
+            }
+        }
     }
 
-    override fun getItemCount() = items.size
-
-    fun submitList(newItems: List<Workout>) {
-        items = newItems
-        notifyDataSetChanged()
+    fun updateFavorites(favorites: List<FavoriteExercise?>) {
+        favoriteIds = favorites.map { it!!.id }.toSet()
+        notifyDataSetChanged() // обновляем иконки избранного
     }
 }
