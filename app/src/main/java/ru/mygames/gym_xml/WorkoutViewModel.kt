@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
 class WorkoutViewModel : ViewModel() {
-    val repository = WgerRepository.ExerciseRepository()
+    val repository = ExerciseRepository()
     val workouts = MutableLiveData<List<Workout>>()
     val isLoading = MutableLiveData(false)
     val error = MutableLiveData<String?>()
@@ -16,7 +16,25 @@ class WorkoutViewModel : ViewModel() {
         viewModelScope.launch {
             isLoading.postValue(true)
             try {
-                val result = repository.getExercisesWithEquipment()
+                val result = repository.getExercises()
+
+                Log.i("RESPONSE1", result.toString())
+
+                workouts.postValue(result)
+                error.postValue(null)
+            } catch (e: Exception) {
+                Log.e("ERROR", e.message!!)
+                error.postValue(e.message)
+            } finally {
+                isLoading.postValue(false)
+            }
+        }
+    }
+    fun loadWorkoutsName(name:String) {
+        viewModelScope.launch {
+            isLoading.postValue(true)
+            try {
+                val result = repository.getExercisesWithName(name)
 
                 Log.i("RESPONSE1", result.toString())
 
