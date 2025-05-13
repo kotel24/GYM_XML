@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "759303075349",
+    "firebase_url": "https://gym-xml-64719-default-rtdb.firebaseio.com",
+    "project_id": "gym-xml-64719",
+    "storage_bucket": "gym-xml-64719.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759303075349:android:807f8921fecec4e072801c",
+        "android_client_info": {
+          "package_name": "ru.mygames.gym_xml"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxgFchCje8jNrfSWzxyFzLS099qvReR20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
