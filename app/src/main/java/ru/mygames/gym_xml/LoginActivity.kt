@@ -14,6 +14,7 @@ import ru.mygames.gym_xml.databinding.ActivityLoginBinding
 import ru.mygames.gym_xml.databinding.ActivityMainBinding
 import ru.mygames.gym_xml.presentation.MainActivity
 
+
 class LoginActivity : AppCompatActivity() {
     private lateinit var loginBinding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
@@ -29,16 +30,16 @@ class LoginActivity : AppCompatActivity() {
         loginBinding.regButton.setOnClickListener {
             val name = loginBinding.signUpName.text.toString()
             val email = loginBinding.signUpEmail.text.toString()
-            val phone = loginBinding.signUpPhone.text.toString()
+            val surname = loginBinding.signUpSurname.text.toString()
             val password = loginBinding.signUpPassword.text.toString()
             val repPassword = loginBinding.signUpRepPassword.text.toString()
-            if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty() || repPassword.isEmpty()) {
+            if (name.isEmpty() || email.isEmpty() || surname.isEmpty() || password.isEmpty() || repPassword.isEmpty()) {
                 if (name.isEmpty())
                     loginBinding.signUpName.error = "input is incorrect"
                 if (email.isEmpty())
                     loginBinding.signUpEmail.error = "input is incorrect"
-                if (phone.isEmpty())
-                    loginBinding.signUpPhone.error = "input is incorrect"
+                if (surname.isEmpty())
+                    loginBinding.signUpSurname.error = "input is incorrect"
                 if (password.isEmpty())
                     loginBinding.signUpPassword.error = "input is incorrect"
                 if (repPassword.isEmpty())
@@ -51,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
                     if (it.isSuccessful) {
                         val database =
                             dbRef.child("users").child(auth.currentUser!!.uid)
-                        val users = Users(name, email, phone, auth.currentUser!!.uid)
+                        val users = Users(name, surname, email, auth.currentUser!!.uid)
                         database.setValue(users).addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 val intent = Intent(this, MainActivity::class.java)

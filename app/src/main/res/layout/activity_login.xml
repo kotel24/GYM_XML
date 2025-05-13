@@ -41,13 +41,13 @@
                 android:layout_marginTop="100dp"
                 android:layout_margin="10dp">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/signUpEmail"
+                    android:id="@+id/signUpSurname"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:backgroundTint="@color/white"
                     android:textColor="@color/white"
-                    android:hint="Your email"
-                    android:inputType="textEmailAddress"
+                    android:hint="Your surname"
+                    android:inputType="textPersonName"
                     android:textColorHint="@color/white"/>
             </LinearLayout>
             <LinearLayout
@@ -56,13 +56,13 @@
                 android:layout_marginTop="100dp"
                 android:layout_margin="10dp">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/signUpPhone"
+                    android:id="@+id/signUpEmail"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:backgroundTint="@color/white"
                     android:textColor="@color/white"
-                    android:hint="Your phone"
-                    android:inputType="phone"
+                    android:hint="Your email"
+                    android:inputType="textEmailAddress"
                     android:textColorHint="@color/white"/>
             </LinearLayout>
             <LinearLayout
@@ -97,36 +97,24 @@
             </LinearLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/signButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:background="@color/darkBlue"
-                    android:text="Sign in"
-                    android:textColor="@color/orange"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="50dp"
+                android:layout_marginTop="100dp"
+                android:layout_margin="10dp">
 
                 <TextView
                     android:id="@+id/regButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="end"
-                    android:gravity="center"
                     android:background="@color/darkBlue"
+                    android:gravity="center"
                     android:text="REGISTERED"
                     android:textColor="@color/orange"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

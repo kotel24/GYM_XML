@@ -1,14 +1,14 @@
 {
   "project_info": {
-    "project_number": "404809963918",
-    "firebase_url": "https://gym-xml-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "gym-xml",
-    "storage_bucket": "gym-xml.firebasestorage.app"
+    "project_number": "759303075349",
+    "firebase_url": "https://gym-xml-64719-default-rtdb.firebaseio.com",
+    "project_id": "gym-xml-64719",
+    "storage_bucket": "gym-xml-64719.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:404809963918:android:2db015e9f4e9c3170cecdf",
+        "mobilesdk_app_id": "1:759303075349:android:807f8921fecec4e072801c",
         "android_client_info": {
           "package_name": "ru.mygames.gym_xml"
         }
@@ -16,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDhaC0iOZwkApu_YB80xaxIyClver4QvBA"
+          "current_key": "AIzaSyDxgFchCje8jNrfSWzxyFzLS099qvReR20"
         }
       ],
       "services": {
