@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Chronometer
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.mygames.gym_xml.R
@@ -42,6 +41,7 @@ class TimerFragment : Fragment() {
         btnReset.setOnClickListener {
             meter.stop()
             meter.base = SystemClock.elapsedRealtime()
+            meter.start()
         }
     }
 }
