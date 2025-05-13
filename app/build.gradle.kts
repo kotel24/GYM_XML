@@ -2,7 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("kotlin-parcelize")
+    id("com.google.devtools.ksp")
     alias(libs.plugins.google.gms.google.services)
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
@@ -52,9 +54,19 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database.ktx)
 
+    //Room
+    implementation("androidx.room:room-runtime:2.7.1")
+    implementation("androidx.room:room-ktx:2.7.1")
+    ksp("androidx.room:room-compiler:2.7.1")
 
+// Hilt
+    implementation("com.google.dagger:hilt-android:2.56.1")
+    implementation("androidx.work:work-runtime-ktx:2.10.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation("androidx.hilt:hilt-work:1.2.0")
+    ksp("com.google.dagger:hilt-compiler:2.56.1")
     // Glide для загрузки изображений
-    annotationProcessor (libs.compiler)
+//    annotationProcessor (libs.compiler)
 
     // Glide для изображений
     implementation (libs.glide.v4160)
@@ -77,3 +89,4 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.glide)
 }
+
