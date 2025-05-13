@@ -4,7 +4,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
+import ru.mygames.gym_xml.FavoriteViewModel
 import ru.mygames.gym_xml.R
+import ru.mygames.gym_xml.WorkoutViewModel
 import ru.mygames.gym_xml.databinding.ActivityMainBinding
 import ru.mygames.gym_xml.presentation.fragments.AccountFragment
 import ru.mygames.gym_xml.presentation.fragments.LikeFragment
@@ -12,19 +15,23 @@ import ru.mygames.gym_xml.presentation.fragments.HomeFragment
 import ru.mygames.gym_xml.presentation.fragments.ProgramsFragment
 import ru.mygames.gym_xml.presentation.fragments.TimerFragment
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val dataModel:MainViewModel by viewModels()
+    private val favoriteViewModel: FavoriteViewModel by viewModels()
+    private val workoutViewModel: WorkoutViewModel by viewModels()
+
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val accountFragment = AccountFragment()
+        val accountFragment = AccountFragment(favoriteViewModel, workoutViewModel)
         val homeFragment = HomeFragment()
-        val programsFragment = ProgramsFragment()
+        val programsFragment = ProgramsFragment(favoriteViewModel, workoutViewModel)
         val timerFragment = TimerFragment()
-        val likeFragment = LikeFragment()
+        val likeFragment = LikeFragment(favoriteViewModel)
 
         setCurrentFragment(accountFragment)
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {

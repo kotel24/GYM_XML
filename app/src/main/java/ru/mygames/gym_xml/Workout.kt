@@ -12,6 +12,6 @@ data class Workout(
     val id: Int,
     val name: String,
     val target: String,
-    val secondaryMuscles: Array<String>,
-    val instructions: Array<String>
+    val secondaryMuscles: String,
+    val instructions: String
 ) : Parcelable
