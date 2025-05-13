@@ -19,18 +19,32 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-    <TextView
-        android:id="@+id/titleTxt"
+    <LinearLayout
+        android:id="@+id/lltitle"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_margin="8dp"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="title"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-
         app:layout_constraintStart_toStartOf="@+id/pic"
-        app:layout_constraintTop_toBottomOf="@+id/pic" />
+        app:layout_constraintTop_toBottomOf="@+id/pic"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/titleTxt"
+            android:layout_width="327dp"
+            android:layout_height="wrap_content"
+            android:text="title"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/heartIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/baseline_favorite_border_24"
+            app:tint="@color/white" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll"
@@ -42,7 +56,7 @@
         app:layout_constraintBottom_toTopOf="@+id/infoTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTxt">
+        app:layout_constraintTop_toBottomOf="@+id/lltitle">
 
         <TextView
             android:id="@+id/equipment"
@@ -85,7 +99,8 @@
     <TextView
         android:id="@+id/infoTxt"
         android:layout_width="match_parent"
-        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:text="info"
