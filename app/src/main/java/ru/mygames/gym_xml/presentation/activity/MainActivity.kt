@@ -5,16 +5,17 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
-import ru.mygames.gym_xml.presentation.viewModel.FavoriteViewModel
 import ru.mygames.gym_xml.R
-import ru.mygames.gym_xml.presentation.viewModel.WorkoutViewModel
+import ru.mygames.gym_xml.data.Exercies_Repository_Impl
 import ru.mygames.gym_xml.databinding.ActivityMainBinding
 import ru.mygames.gym_xml.presentation.fragments.AccountFragment
-import ru.mygames.gym_xml.presentation.fragments.LikeFragment
 import ru.mygames.gym_xml.presentation.fragments.HomeFragment
+import ru.mygames.gym_xml.presentation.fragments.LikeFragment
 import ru.mygames.gym_xml.presentation.fragments.ProgramsFragment
 import ru.mygames.gym_xml.presentation.fragments.TimerFragment
+import ru.mygames.gym_xml.presentation.viewModel.FavoriteViewModel
 import ru.mygames.gym_xml.presentation.viewModel.MainViewModel
+import ru.mygames.gym_xml.presentation.viewModel.WorkoutViewModel
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Exercies_Repository_Impl.setContext(this)
+        Exercies_Repository_Impl.init(this)
 
         val accountFragment = AccountFragment(favoriteViewModel, workoutViewModel)
         val homeFragment = HomeFragment()
@@ -55,5 +58,4 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.fragment, fragment)
             commit()
         }
-
 }

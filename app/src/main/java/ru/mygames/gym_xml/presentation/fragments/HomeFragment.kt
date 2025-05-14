@@ -26,17 +26,15 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        super.onCreate(savedInstanceState)
         setupRecyclerView(view)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        viewModel.exercieslist.observe(this){
+        viewModel.exercieslist.observe(viewLifecycleOwner){
             exerciesListAdapter.submitList(it)
         }
-        val exerciesFragment = ExerciesFragment()
         val buttonAddShopItem = view.findViewById<FloatingActionButton>(R.id.button_add_shop_item)
         buttonAddShopItem.setOnClickListener{
             val exerciesFragment = ExerciesFragment.newInstanceAddItem()
-            val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
+            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
             transaction.replace(R.id.fragment, exerciesFragment)
             transaction.commit()
         }
@@ -89,7 +87,7 @@ class HomeFragment : Fragment() {
     private fun setupOnClickLictener() {
         exerciesListAdapter.onExerciesItemClickListener = {
             val exerciesFragment = ExerciesFragment.newInstanceEditItem(it.id)
-            val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
+            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
             transaction.replace(R.id.fragment, exerciesFragment)
             transaction.commit()
         }

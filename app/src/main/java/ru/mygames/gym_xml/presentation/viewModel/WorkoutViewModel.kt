@@ -1,6 +1,5 @@
 package ru.mygames.gym_xml.presentation.viewModel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,12 +19,9 @@ class WorkoutViewModel : ViewModel() {
             try {
                 val result = repository.getExercises()
 
-                Log.i("RESPONSE1", result.toString())
-
                 workouts.postValue(result)
                 error.postValue(null)
             } catch (e: Exception) {
-                Log.e("ERROR", e.message!!)
                 error.postValue(e.message)
             } finally {
                 isLoading.postValue(false)
@@ -38,12 +34,9 @@ class WorkoutViewModel : ViewModel() {
             try {
                 val result = repository.getExercisesWithName(name)
 
-                Log.i("RESPONSE1", result.toString())
-
                 workouts.postValue(result)
                 error.postValue(null)
             } catch (e: Exception) {
-                Log.e("ERROR", e.message!!)
                 error.postValue(e.message)
             } finally {
                 isLoading.postValue(false)
