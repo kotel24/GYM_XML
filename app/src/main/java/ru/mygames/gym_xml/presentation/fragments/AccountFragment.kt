@@ -6,17 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
-import ru.mygames.gym_xml.presentation.viewModel.FavoriteViewModel
 import ru.mygames.gym_xml.R
+import ru.mygames.gym_xml.data.toFavoriteExercise
 import ru.mygames.gym_xml.domain.workout.Workout
 import ru.mygames.gym_xml.presentation.adapters.WorkoutAdapter
+import ru.mygames.gym_xml.presentation.viewModel.FavoriteViewModel
 import ru.mygames.gym_xml.presentation.viewModel.WorkoutViewModel
-import ru.mygames.gym_xml.data.toFavoriteExercise
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -57,6 +60,18 @@ class AccountFragment @Inject constructor(
             favoriteViewModel.favorites.collect { favorites ->
                 adapter.updateFavorites(favorites)
             }
+        }
+
+        val nameTxt = view.findViewById<TextView>(R.id.nameTxt)
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        val dbRef = FirebaseDatabase.getInstance().getReference("USER/users/$uid")
+
+        dbRef.get().addOnSuccessListener { snapshot ->
+            val name = snapshot.child("name").value as? String
+            nameTxt.text = name ?: "Athlete"
+        }.addOnFailureListener {
+            nameTxt.text = "Athlete"
         }
 
         // Поиск по имени тренировки при нажатии Enter в EditText
