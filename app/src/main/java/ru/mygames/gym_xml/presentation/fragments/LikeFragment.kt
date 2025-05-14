@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import ru.mygames.gym_xml.FavoriteAdapter
-import ru.mygames.gym_xml.FavoriteViewModel
+import ru.mygames.gym_xml.presentation.adapters.FavoriteAdapter
+import ru.mygames.gym_xml.presentation.viewModel.FavoriteViewModel
 import ru.mygames.gym_xml.R
-import ru.mygames.gym_xml.toFavoriteExercise
-import ru.mygames.gym_xml.toWorkout
+import ru.mygames.gym_xml.data.toFavoriteExercise
+import ru.mygames.gym_xml.data.toWorkout
 import javax.inject.Inject
 
 class LikeFragment @Inject constructor(

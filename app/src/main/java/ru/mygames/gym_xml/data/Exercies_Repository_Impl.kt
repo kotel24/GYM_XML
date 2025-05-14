@@ -2,8 +2,8 @@ package ru.mygames.gym_xml.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import ru.mygames.gym_xml.domain.home_exercies.Exercies
-import ru.mygames.gym_xml.domain.home_exercies.Exercies_Repository
+import ru.mygames.gym_xml.domain.exercies.Exercies
+import ru.mygames.gym_xml.domain.exercies.Exercies_Repository
 import kotlin.random.Random
 
 object Exercies_Repository_Impl: Exercies_Repository {

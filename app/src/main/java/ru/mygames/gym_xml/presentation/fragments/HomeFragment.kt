@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.mygames.gym_xml.R
-import ru.mygames.gym_xml.presentation.ExerciesAdapter
-import ru.mygames.gym_xml.presentation.MainViewModel
+import ru.mygames.gym_xml.presentation.adapters.ExerciesAdapter
+import ru.mygames.gym_xml.presentation.viewModel.MainViewModel
 
 class HomeFragment : Fragment() {
     private lateinit var viewModel: MainViewModel
@@ -50,12 +50,12 @@ class HomeFragment : Fragment() {
         with(rvShoplist) {
             adapter = exerciesListAdapter
             recycledViewPool.setMaxRecycledViews(
-                ru.mygames.gym_xml.presentation.ExerciesAdapter.VIEW_TYPE_ENABLED,
-                ru.mygames.gym_xml.presentation.ExerciesAdapter.MAX_POOL_SIZE
+                ExerciesAdapter.VIEW_TYPE_ENABLED,
+                ExerciesAdapter.MAX_POOL_SIZE
             )
             recycledViewPool.setMaxRecycledViews(
-                ru.mygames.gym_xml.presentation.ExerciesAdapter.VIEW_TYPE_DISABLED,
-                ru.mygames.gym_xml.presentation.ExerciesAdapter.MAX_POOL_SIZE
+                ExerciesAdapter.VIEW_TYPE_DISABLED,
+                ExerciesAdapter.MAX_POOL_SIZE
             )
         }
         setupOnLongClickListener()

@@ -9,12 +9,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
-import ru.mygames.gym_xml.FavoriteViewModel
+import ru.mygames.gym_xml.presentation.viewModel.FavoriteViewModel
 import ru.mygames.gym_xml.R
-import ru.mygames.gym_xml.Workout
-import ru.mygames.gym_xml.WorkoutAdapterFullScreen
-import ru.mygames.gym_xml.WorkoutViewModel
-import ru.mygames.gym_xml.toFavoriteExercise
+import ru.mygames.gym_xml.domain.workout.Workout
+import ru.mygames.gym_xml.presentation.adapters.WorkoutAdapterFullScreen
+import ru.mygames.gym_xml.presentation.viewModel.WorkoutViewModel
+import ru.mygames.gym_xml.data.toFavoriteExercise
 import javax.inject.Inject
 
 @AndroidEntryPoint

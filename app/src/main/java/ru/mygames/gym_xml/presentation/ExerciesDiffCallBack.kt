@@ -1,7 +1,7 @@
 package ru.mygames.gym_xml.presentation
 
 import androidx.recyclerview.widget.DiffUtil
-import ru.mygames.gym_xml.domain.home_exercies.Exercies
+import ru.mygames.gym_xml.domain.exercies.Exercies
 
 class ExerciesDiffCallBack:DiffUtil.ItemCallback<Exercies> (){
     override fun areItemsTheSame(oldItem: Exercies, newItem: Exercies): Boolean {
